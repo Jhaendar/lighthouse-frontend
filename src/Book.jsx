@@ -8,18 +8,13 @@ import {
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-function Book({ book }) {
-  const bookTitle =
-    book.attributes.title.en ||
-    book.attributes.title.ja ||
-    book.attributes.title.zh;
-  const bookDescription =
-    book.attributes.description.en ||
-    book.attributes.description.ja ||
-    book.attributes.description.zh;
-  const bookReadChapters = book.read;
-  const bookTotalChapters = book.total;
-
+function Book({
+  bookTitle,
+  bookDescription,
+  bookReadChapters,
+  bookTotalChapters,
+  bookId,
+}) {
   return (
     <Card className="flex flex-col sm:flex-row w-full">
       <div className="flex-shrink-0 sm:w-[120px] p-4 m-auto">
@@ -35,7 +30,11 @@ function Book({ book }) {
       <div className="flex-1 flex flex-col *:pl-1 overflow-hidden">
         <CardHeader className="">
           <div className="">
-            <CardTitle className="line-clamp-1">{bookTitle}</CardTitle>
+            <CardTitle className="line-clamp-1">
+              <a target="_blank" href={`https://mangadex.org/title/${bookId}`}>
+                {bookTitle}
+              </a>
+            </CardTitle>
           </div>
         </CardHeader>
         <CardContent>
